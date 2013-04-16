@@ -44,8 +44,10 @@ public final class R {
         public static final int badge_layout_bottom=0x7f0a0007;
         public static final int badge_layout_middle=0x7f0a0004;
         public static final int badge_layout_top=0x7f0a0001;
-        public static final int badge_txt_displayName=0x7f0a0006;
+        public static final int badge_txt_display_name=0x7f0a0006;
         public static final int badge_txt_location=0x7f0a0008;
+        public static final int badge_txt_main_title=0x7f0a0002;
+        public static final int badge_txt_subtitle=0x7f0a0003;
         public static final int dialog_download_txt_url=0x7f0a000d;
         public static final int main_bt_about=0x7f0a000c;
         public static final int main_bt_config=0x7f0a000b;
@@ -55,8 +57,6 @@ public final class R {
         public static final int menu_picture_from_camera=0x7f0a0010;
         public static final int menu_picture_from_download=0x7f0a000e;
         public static final int menu_picture_from_gallery=0x7f0a000f;
-        public static final int textView1=0x7f0a0002;
-        public static final int textView2=0x7f0a0003;
     }
     public static final class layout {
         public static final int activity_about=0x7f030000;
@@ -65,8 +65,7 @@ public final class R {
         public static final int dialog_download_url=0x7f030003;
     }
     public static final class menu {
-        public static final int activity_main=0x7f090000;
-        public static final int activity_take_picture=0x7f090001;
+        public static final int activity_take_picture=0x7f090000;
     }
     public static final class string {
         public static final int activity_badge_txt_hello=0x7f070007;

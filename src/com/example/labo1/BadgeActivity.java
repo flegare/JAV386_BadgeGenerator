@@ -42,16 +42,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
- * 
- * Cette classe présente la badge à l'usager. 
- * @author francois.legare1
- * 
+ * Cette classe présente la badge à l'usager.
+ * @author francois.legare1 
  */
 public class BadgeActivity extends Activity {
-	
-	
+		
 	/*
-	 * GRAND SECTION
+	 * GRANDE SECTIONS
 	 *
 	 * - CONSTANTES ET VARIABLES
 	 * - INITIALISATION DE LA VUE
@@ -60,9 +57,7 @@ public class BadgeActivity extends Activity {
 	 * - GESTION DE LA PHOTO
 	 * - GESTION DES MENUS
 	 */
-	
-	
-	
+		
 	///////////////////////////////////////////////////////////////////////////////////////////////////
 	// 
 	// CONSTANTES ET VARIABLES
@@ -82,7 +77,6 @@ public class BadgeActivity extends Activity {
 	public static final int RESULT_GALLERY_IMAGE_REQUEST = 998;
 	public static final int RESULT_CAMERA_IMAGE_REQUEST = 997;
 	
-
 	private String nameOfUser;
 
 	private TextView txtUserName;
@@ -127,7 +121,7 @@ public class BadgeActivity extends Activity {
 			nameOfUser = getString(R.string.activity_badge_txt_namestub);
 		}
 
-		txtUserName = ((TextView) findViewById(R.id.badge_txt_displayName));
+		txtUserName = ((TextView) findViewById(R.id.badge_txt_display_name));
 		txtUserName.setText(nameOfUser);
 
 		// On applique une custom font
@@ -188,7 +182,7 @@ public class BadgeActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_badge);
-		// On appel notre méthode au démarrage de l'activité
+		// On appelle notre méthode au démarrage de l'activité
 		init();
 	}
 
