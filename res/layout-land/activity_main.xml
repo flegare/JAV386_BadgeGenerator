@@ -1,0 +1,60 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".MainActivity" >
+
+     <!--     
+    	Nous avons generer un logo avec les ratio suivant: 
+		xhdpi: 2.0
+		hdpi: 1.5
+		mdpi: 1.0 (baseline)
+		ldpi: 0.75       
+     -->       
+     
+    <ImageView
+        android:id="@+id/badge_img_userPicture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo" android:contentDescription="@string/app_name"/>
+
+    <EditText
+        android:id="@+id/main_edt_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="25dp"
+        android:layout_marginBottom="18dp"
+        android:ems="15"
+        android:hint="@string/activity_main_txt_nameHint"
+        android:inputType="textPersonName" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/main_bt_submit"
+            style="@style/CustomButton"
+            android:text="@string/activity_main_txt_btSubmit"
+            android:layout_weight=".33" />
+
+        <Button
+            android:id="@+id/main_bt_config"
+            style="@style/CustomButton"
+            android:onClick="launchConfigActivity"
+            android:text="@string/activity_main_txt_btConfig"
+            android:layout_weight=".33" />
+
+        <Button
+            android:id="@+id/main_bt_about"
+            style="@style/CustomButton"
+            android:onClick="launchAboutActivity"
+            android:text="@string/activity_main_txt_btAbout"
+            android:layout_weight=".33" />
+
+    </LinearLayout>
+
+</LinearLayout>

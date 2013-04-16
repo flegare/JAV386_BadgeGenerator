@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string-array name="prefColorListLabel">        
+        <item name="Red">Red</item>
+        <item name="Green">Green</item>
+        <item name="Blue">Blue</item>
+        <item name="Black">Black</item>       
+    </string-array>
+        
+    <string-array name="prefColorListValues">        
+        <item name="Red">#FF0000</item>
+        <item name="Green">#00FF00</item>
+        <item name="Blue">#0000FF</item>
+        <item name="Black">#000000</item>       
+    </string-array>
+        
+</resources>

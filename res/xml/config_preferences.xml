@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!-- TODO Utiliser des references pour les tokens text -->
+
+    <PreferenceCategory android:title="Badge Preference" >
+        <ListPreference
+            android:defaultValue="#FF0000"
+            android:dialogTitle="@string/config_badge_color_hint"
+            android:entries="@array/prefColorListLabel"
+            android:entryValues="@array/prefColorListValues"
+            android:key="@string/pref_key_badgeBackgroundColor"
+            android:summary="@string/config_badge_color_description"
+            android:title="@string/config_badge_color" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="@string/pref_key_badgeShowPicture"
+            android:summary="@string/config_show_user_picture_description"
+            android:title="@string/config_show_user_picture" />
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/pref_key_badgeShowLocation"
+            android:title="@string/config_show_location"
+            android:summary="@string/config_show_gps_coordinate_on_badge"
+             />
+                   
+    </PreferenceCategory>
+
+</PreferenceScreen>

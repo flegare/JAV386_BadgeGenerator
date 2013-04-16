@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.labo1"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk android:minSdkVersion="8"
+              android:targetSdkVersion="17" />
+
+    <!-- Necessaire pour les operation internet (webview, download, etc. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Necessaire pour obtenir la localisation GPS -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- Necessaire pour écrire sur la carte SD -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+            
+    <!-- 
+     Application décrit toutes les composantes présentes dans notre application. 
+     Ceci permet à l'OS de connaitre les classes à exécuter lors que des "intent"
+     sont lancés sur le BUS.                      
+     -->
+       
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+                
+        <activity
+            android:name="com.example.labo1.MainActivity"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" >
+            <!-- Ceci indique à notre application qu'au démarage cette activité sera lancé -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- On applique un theme qui enlève la bar de titre et notre application plein écran -->
+        <activity
+            android:name="com.example.labo1.BadgeActivity"
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" />
+                
+        <activity
+            android:name="com.example.labo1.AboutActivity"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        
+        <activity
+            android:name="com.example.labo1.ConfigActivity"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+                                        
+    </application>
+
+</manifest>
