@@ -1,13 +1,18 @@
 package com.example.labo1;
 
-import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.ActionBar.OnNavigationListener;
+import com.actionbarsherlock.app.SherlockActivity;
 
 /**
  * Activité principale de notre générateur de badge
@@ -19,7 +24,7 @@ import android.widget.EditText;
  * 
  * @author francois.legare1
  */
-public class MainActivity extends Activity {
+public class MainActivity extends SherlockActivity implements OnNavigationListener {
 
 	/*
 	 * GRANDE SECTIONS
@@ -43,6 +48,8 @@ public class MainActivity extends Activity {
 	// l'activité
 	private Button btSubmit;
 	private EditText edName;
+
+	private com.actionbarsherlock.app.ActionBar actionBar;
 
 	// /////////////////////////////////////////////////////////////////////////////////////////////////
 	//
@@ -97,7 +104,7 @@ public class MainActivity extends Activity {
 		 * l'isoler dans une méthode utilitaire. Ceci est complétement
 		 * facultatif!
 		 */
-		init();
+		init();	
 	}
 	
 		
@@ -222,8 +229,59 @@ public class MainActivity extends Activity {
 				launchBadgeActivity();
 			}
 		});
-
+		
+		
+		
+		//On ajoute l'action bar
+		handleMenuBar();
+		
 	}
+			
+	// /////////////////////////////////////////////////////////////////////////////////////////////////
+	//
+	// ACTIONS
+	//
+	// /////////////////////////////////////////////////////////////////////////////////////////////////
+
+	/**
+	 * On a vu comment lancer une activité via un click listener sur le bouton.
+	 * Voici maintenant une technique beaucoup plus simple. Il s'agit de définir
+	 * le nom de la méthode a exécuter directement dans la vue XML via
+	 * l'attribut onClick
+	 * 
+	 * Regarder le fichier activity_main.xml et regarder le bouton
+	 * "main_bt_about" on y retrouve notre méthode "launchAboutActivity"
+	 * 
+	 * Pour que cette technique fonctionne, il faut les conditions suivantes:
+	 * 
+	 * 1) Le nom onClick correspont à cette méthode 
+	 * 2) La méthode est publique
+	 * 3) La méthode a View en paramètre d'entré 
+	 * 4) La méthode retourne Void
+	 * 
+	 */
+	public void launchAboutActivity(View v) {		
+		launchAboutActivity();
+	}
+	
+	public void launchAboutActivity() {
+		startActivity(new Intent(this, AboutActivity.class));
+	}
+
+	/**
+	 * Méthode pour lancer l'activité de la config
+	 */
+	public void launchConfigActivity(View v) {
+		launchConfigActivity();
+	}
+	
+	/**
+	 * Méthode pour lancer l'activité de la config
+	 */
+	public void launchConfigActivity() {
+		startActivity(new Intent(this, ConfigActivity.class));
+	}
+	
 
 	/**
 	 * Lance l'activité BadgeActivity
@@ -253,39 +311,39 @@ public class MainActivity extends Activity {
 		startActivity(i);
 	}
 	
+		
+	///////////////////////////////////////////////////////////////////////////////////////////////////
+	// 
+	// GESTION DES MENUS
+	//
+	///////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	// /////////////////////////////////////////////////////////////////////////////////////////////////
-	//
-	// ACTIONS
-	//
-	// /////////////////////////////////////////////////////////////////////////////////////////////////
-
 	/**
-	 * On a vu comment lancer une activité via un click listener sur le bouton.
-	 * Voici maintenant une technique beaucoup plus simple. Il s'agit de définir
-	 * le nom de la méthode a exécuter directement dans la vue XML via
-	 * l'attribut onClick
-	 * 
-	 * Regarder le fichier activity_main.xml et regarder le bouton
-	 * "main_bt_about" on y retrouve notre méthode "launchAboutActivity"
-	 * 
-	 * Pour que cette technique fonctionne, il faut les conditions suivantes:
-	 * 
-	 * 1) Le nom onClick correspont à cette méthode 
-	 * 2) La méthode est publique
-	 * 3) La méthode a View en paramètre d'entré 
-	 * 4) La méthode retourne Void
-	 * 
+	 * @param callerActivity
+	 * @param callerMenuId
 	 */
-	public void launchAboutActivity(View v) {
-		startActivity(new Intent(this, AboutActivity.class));
+	public void handleMenuBar() {
+
+		// Ajout de sherlock menus de navigation
+		String[] mLocations = getResources().getStringArray(R.array.menuLocations);
+
+		actionBar = this.getSupportActionBar();
+		Context context = actionBar.getThemedContext();
+		ArrayAdapter<CharSequence> list = ArrayAdapter.createFromResource(context, 
+																		  R.array.menuLocations,
+																		  R.layout.sherlock_spinner_item);
+		
+		list.setDropDownViewResource(R.layout.sherlock_spinner_dropdown_item);
+		
+		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+		actionBar.setListNavigationCallbacks(list, this);
+		
 	}
 
-	/**
-	 * Méthode pour lancer l'activité de la config
-	 */
-	public void launchConfigActivity(View v) {
-		startActivity(new Intent(this, ConfigActivity.class));
+	@Override
+	public boolean onNavigationItemSelected(int itemPosition, long itemId) {
+		Log.e(TAG, "Request launch " + itemPosition + " from id : " + itemId);		
+		return true;
 	}
-
+		
 }
