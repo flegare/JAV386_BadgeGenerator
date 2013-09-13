@@ -24,28 +24,35 @@ public class AboutActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_about);
-		init();
+		init(Bundle savedInstanceState);
 	}
 
 	/**
-	 * Nous allons initialiser la vue dans cette méthode
+	 * Nous allons initialiser la vue dans cette mï¿½thode
 	 */
-	private void init() {
+	private void init(Bundle savedInstanceState) {
 
 		/*
 		 * Une webview est comme un petit fureteur internet qui consome et
-		 * affiche du html. Les sources du html peuvent être un fichier local ou
+		 * affiche du html. Les sources du html peuvent ï¿½tre un fichier local ou
 		 * sur le net.
 		 * 
-		 * Dans le deuxième cas, il ne faut pas oublier de mettre la permission
+		 * Dans le deuxiï¿½me cas, il ne faut pas oublier de mettre la permission
 		 * INTERNET dans le manifest pour que ceci soit fonctionnel!
 		 */
 
 		wv = (WebView) findViewById(R.id.about_webview);
-		wv.loadUrl("http://twitter.github.io/bootstrap/examples/starter-template.html");
+		
+		// Initialize the WebView
+		wv.getSettings().setSupportZoom(true);
+		wv.getSettings().setBuiltInZoomControls(true);
+		wv.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
+		wv.setScrollbarFadingEnabled(true);
+		wv.getSettings().setLoadsImagesAutomatically(true);
+		
 		wv.setWebViewClient(new WebViewClient() {
 
-			// On va capturer un timestam pour voir la rapiditer d'exécution
+			// On va capturer un timestam pour voir la rapiditer d'exï¿½cution
 			private long ts;
 
 			@Override
@@ -60,8 +67,13 @@ public class AboutActivity extends Activity {
 				ts = System.currentTimeMillis();
 			}
 		});
+		
+		if (savedInstanceState == null)
+		{
+			wv.loadUrl("http://twitter.github.io/bootstrap/examples/starter-template.html");
+		}
 
-		// Permet l'exécution de javascript, attention aux risques de Cross-site
+		// Permet l'exï¿½cution de javascript, attention aux risques de Cross-site
 		// scripting (XSS)
 		wv.getSettings().setJavaScriptEnabled(true);
 
@@ -69,13 +81,34 @@ public class AboutActivity extends Activity {
 
 	@Override
 	public void onBackPressed() {
-		// On quitte cette activité seulement si la webview peut
+		// On quitte cette activitï¿½ seulement si la webview peut
 		// revenir en arriere.
 		if (wv.canGoBack()) {
 			wv.goBack();
 		} else {
 			super.onBackPressed();
 		}
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.abouth, menu);
+		return true;
+	}
+	
+	@Override
+	protected void onSaveInstanceState(Bundle outState )
+	{
+		super.onSaveInstanceState(outState);
+		wv.saveState(outState);
+	}
+
+	@Override
+	protected void onRestoreInstanceState(Bundle savedInstanceState)
+	{
+		super.onSaveInstanceState(savedInstanceState);
+		wv.restoreState(savedInstanceState);
 	}
 
 }
